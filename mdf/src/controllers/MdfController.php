@@ -21,6 +21,16 @@ class MdfController extends Controller
         return \View::make('aoeu', ['toRender' => call_user_func($this->modelClassName() . "::all")]);
     }
 
+    public function create()
+    {
+        // return view to create model
+    }
+
+    public function edit()
+    {
+        // return view to edit model
+    }
+
     public function show()
     {
         return \View::make('aoeu', ['toRender' => call_user_func($this->modelClassName() . "::find", \Request::segment(2))]);
