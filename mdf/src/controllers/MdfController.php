@@ -43,20 +43,14 @@ class MdfController extends Controller
 
     public function update()
     {
-        $modelName = \Request::segment(1);
-        $modelClassName = ucfirst($this->inflector->singularize($modelName));
-        $parameters = \Route::getCurrentRoute()->parameters();
-        $model = call_user_func("{$modelClassName}::find", $parameters[$modelName]);
+        $model = call_user_func($this->modelClassName() . "::find", \Request::segment(2));
         $model->update(\Input::all());
         return $model;
     }
 
     public function destroy()
     {
-        $modelName = \Request::segment(1);
-        $modelClassName = ucfirst($this->inflector->singularize($modelName));
-        $parameters = \Route::getCurrentRoute()->parameters();
-        return call_user_func("{$modelClassName}::destroy", $parameters[$modelName]);
+        return call_user_func($this->modelClassName() . "::destroy", \Request::segment(2));
     }
 
     /**
